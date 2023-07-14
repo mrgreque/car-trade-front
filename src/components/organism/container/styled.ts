@@ -5,12 +5,12 @@ const StyledSection = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 100px - 220px);
+  min-height: calc(100vh - 100px - 320px);
 `
 
 const StyledDivContainer = styled.div`
   width: 95%;
-  max-width: 1200px;
+  max-width: 1300px;
 `
 
 export {

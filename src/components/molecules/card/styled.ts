@@ -8,12 +8,12 @@ const StyledCard = styled(Card)`
   &:hover {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     transform: scale(1.01);
-  }
+  };
+  margin-top: 10px;
+  cursor: pointer;
 `
-
 const StyledDescription = styled.section`
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
 `
 

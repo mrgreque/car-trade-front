@@ -1,3 +1,4 @@
 export type CardTextProps = {
-  text: string | number
+  text: string | number,
+  small?: boolean,
 }

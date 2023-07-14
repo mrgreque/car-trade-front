@@ -9,14 +9,14 @@ const FilterActions = () => {
     <FilterActionsWrapper>
       <article>
         <ButtonWithIcon
-          disabled
+          disabled={false}
           icon={<FilterListIcon />}
           onClick={() => {console.log('Filtrar')}}
         >
           <span>Filtro</span>
         </ButtonWithIcon>
         <Button
-          variant="contained"
+          variant="text"
           onClick={() => {console.log('Limpar Filtros')}}
           disabled={false}
         >
@@ -27,6 +27,7 @@ const FilterActions = () => {
         <Ordening
           ordening="min-price"
           handleOrdening={() => {console.log('Ordenar')}}
+          size="small"
         />
       </article>
     </FilterActionsWrapper>

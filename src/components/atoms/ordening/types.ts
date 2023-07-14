@@ -1,4 +1,5 @@
 export type OrdeningProps = {
   handleOrdening: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-  ordening: string
+  ordening: string,
+  size?: "small" | "medium",
 }

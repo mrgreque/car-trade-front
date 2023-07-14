@@ -1,4 +1,5 @@
 import Item from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
 import { styled } from 'styled-components';
 
 const StyledItem = styled(Item)`
@@ -7,6 +8,11 @@ const StyledItem = styled(Item)`
   align-items: center;
 `
 
+const StyledGrid = styled(Grid)`
+  min-height: calc(100vh - 100px - 460px);
+`
+
 export {
-  StyledItem
+  StyledItem,
+  StyledGrid
 }

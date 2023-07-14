@@ -8,13 +8,11 @@ import { OrdeningProps } from './types';
 const Ordening = (props: OrdeningProps) => {
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+      <FormControl fullWidth size={props.size}>
         <InputLabel>Ordenar</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           value={props.ordening}
-          label="Age"
+          label="Ordenar"
           onChange={() => props.handleOrdening}
         >
           <MenuItem value="min-price">Menor Preço</MenuItem>
@@ -23,6 +21,12 @@ const Ordening = (props: OrdeningProps) => {
       </FormControl>
     </Box>
   );
+};
+
+Ordening.defaultProps = {
+  ordening: 'min-price',
+  handleOrdening: () => {null},
+  size: 'medium',
 };
 
 export default Ordening;

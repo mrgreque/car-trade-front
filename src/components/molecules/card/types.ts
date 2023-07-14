@@ -1,5 +1,5 @@
+import { CarProps } from "../../pages/carList/types"
+
 export type CardProps = {
-  title: string;
-  description: string;
-  image: string;
+  car: CarProps
 }
