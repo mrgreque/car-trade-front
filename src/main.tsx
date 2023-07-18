@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import BasePageTemplate from './components/template/basePage'
@@ -28,13 +27,15 @@ const router = createBrowserRouter([
       {
         path: '/car/register',
         element: <RegisterCar />,
+      },
+      {
+        path: '/car/edit/:id',
+        element: <RegisterCar />,
       }
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <RouterProvider router={router} />
 )

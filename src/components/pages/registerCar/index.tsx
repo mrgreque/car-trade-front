@@ -12,6 +12,7 @@ import DefaultSelect from "../../atoms/defautSelect"
 import { StyledArticlePreview, StyledCardPreview } from "./styled"
 import axios from "axios"
 import { CarProps } from "../carList/types"
+import { useParams } from "react-router-dom"
 
 const brazilStates = [
   { value: 'AC', label: 'Acre' },
@@ -122,6 +123,7 @@ const RegisterCar = () => {
   const [state, setState] = useState('')
   const [principalImage, setPrincipalImage] = useState('/not_image_2.jpg')
   const [oldPrice, setOldPrice] = useState(0)
+  const [editingCar, setEditingCar] = useState<boolean>(false)
 
   const requiredFields: string[] = [
     'name',
@@ -188,7 +190,6 @@ const RegisterCar = () => {
     inpFile.value = ''
   }
 
-
   const handleSaveCar = async (e: any) => {
     e.preventDefault();
     const car = {
@@ -231,15 +232,44 @@ const RegisterCar = () => {
       })
   }
 
+  const loadCar = (car: CarProps) => {
+    setName(car.name)
+    setModel(car.model)
+    setBrand(car.brand)
+    setYear(car.year)
+    setKm(car.km)
+    setPrice(car.price)
+    setCity(car.city)
+    setColor(car.color)
+    setDescription(car.description)
+    setPorts(car.ports)
+    setTransmission(car.transmission)
+    setFuel(car.fuel)
+    setModelYear(car.modelYear)
+    setMotorPower(car.motorPower)
+    setPaidIpva(car.paidIpva)
+    setPaidLicensing(car.paidLicensing)
+    setState(car.state)
+    setPrincipalImage(car.principalImage)
+    setOldPrice(car.oldPrice ?? 0)
+  }
+
+  const { id } = useParams()
+
   useEffect(() => {
-    axios.get('http://localhost:3000/car/1', { params: { id: 1 }})
-      .then((response) => {
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    if (id) {
+      setEditingCar(true)
+      axios.get(`http://localhost:3000/car/${id}`)
+        .then((response) => {
+          if (response.data) {
+            loadCar(response.data as CarProps)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [id])
 
 
   return (
