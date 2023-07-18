@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import Card from '../../molecules/card';
+import CarCard from '../../molecules/card';
 import { StyledGrid, StyledItem } from './styled';
 
 const GridCars = () => {
@@ -8,7 +8,7 @@ const GridCars = () => {
       {Array.from(Array(10)).map((_, index) => (
         <Grid item xs={8} sm={4} md={2} key={index}>
           <StyledItem>
-            <Card
+            <CarCard
               car={{
                 id: '1',
                 name: 'Fusca',
@@ -39,7 +39,7 @@ const GridCars = () => {
       {Array.from(Array(6)).map((_, index) => (
         <Grid item xs={8} sm={4} md={2} key={index}>
           <StyledItem>
-            <Card
+            <CarCard
               car={{
                 id: '1',
                 name: 'Fusca',

@@ -26,4 +26,5 @@ export type CarProps = {
   motorPower: string,
   ports: number,
   description: string,
+  [key: string]: string | number | boolean | undefined | string[] | number[] | boolean[] | undefined[] | undefined;
 }

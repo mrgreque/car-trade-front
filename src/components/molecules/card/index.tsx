@@ -6,10 +6,10 @@ import { Column, Row, SpacedRow, Spacer } from "../../global/styled";
 import { StyledCard, StyledDescription } from "./styled";
 import { CardProps } from "./types";
 
-const Card = (props: CardProps) => {
+const CarCard = (props: CardProps) => {
   return (
     <StyledCard>
-      <img src={props.car.principalImage} alt={props.car.name} style={{
+        <img src={props.car.principalImage} alt={props.car.name} style={{
           objectFit: 'cover',
           height: '200px',
           width: '100%',
@@ -39,4 +39,4 @@ const Card = (props: CardProps) => {
   )
 };
 
-export default Card;
+export default CarCard;

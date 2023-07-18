@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import BasePageTemplate from './components/template/basePage'
 import CarList from './components/pages/carList'
+import RegisterCar from './components/pages/registerCar'
 
 // function ScrollToTop() {
 //   const { pathname} = useLocation();
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <CarList />,
+      },
+      {
+        path: '/car/register',
+        element: <RegisterCar />,
       }
     ]
   }
