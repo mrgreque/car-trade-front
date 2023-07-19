@@ -13,6 +13,7 @@ import { StyledArticlePreview, StyledCardPreview, StyledTtlePreview } from "./st
 import axios from "axios"
 import { CarProps } from "../carList/types"
 import { useNavigate, useParams } from "react-router-dom"
+import DefaultButton from "../../atoms/defaultButton"
 
 const brazilStates = [
   { value: 'AC', label: 'Acre' },
@@ -295,13 +296,18 @@ const RegisterCar = () => {
     <main>
       <InternalContainer>
         <Column>
-          <Row
+          <SpacedRow
             width="100%"
           >
             <StyledTtlePreview>
               {editingCar ? `Editando Carro ID: ${id ?? ''}` : 'Cadastro de Carro'}
             </StyledTtlePreview>
-          </Row>
+            <DefaultButton
+              onClick={() => navigate('/admin')}
+            >
+              Voltar
+            </DefaultButton>
+          </SpacedRow>
           <Row
             width="100%"
           >
@@ -385,9 +391,18 @@ const RegisterCar = () => {
               <DefaultInput label="Descrição" inputValue={description} setDefaultInput={setDescription} size="small" variant="outlined" multiline rows={4} />
             </SpacedRow>
             <SpacedRow>
-              <input type="file" id="inpFile" onChange={handleSaveImage}/>
+              <Column>
+                <p>Selecione uma imagem para o veículo:</p>
+                <Spacer width="0px" height="5px" />
+                <input type="file" id="inpFile" onChange={handleSaveImage}/>
+              </Column>
             </SpacedRow>
-            <button onClick={handleSaveCar}>Cadastrar</button>
+            <DefaultButton
+              onClick={handleSaveCar}
+              color="primary"
+            >
+              {editingCar ? 'Salvar' : 'Cadastrar'}
+            </DefaultButton>
           </FormInColumn>
         </Column>
 

@@ -1,6 +1,6 @@
 export type DefaultButtonProps = {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: any;
   width?: string;
   height?: string;
   disabled?: boolean;

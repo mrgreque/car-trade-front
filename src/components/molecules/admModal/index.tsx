@@ -29,7 +29,7 @@ const AdmModal = (props: AdmModalProps) => {
         alert('Logado com sucesso')
         setTimeout(() => {
           resetInputs()
-          navigate('adm-panel')
+          navigate('admin')
         }, 1000)
         localStorage.setItem('token', response.data.accessToken)
       })

@@ -3,10 +3,13 @@ import { StyledHeader, StyledNav } from "./styled";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ButtonWithIcon from "../../atoms/buttonWithIcon";
 import AdmModal from "../../molecules/admModal";
+import { HeaderProps } from "./types";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = (props: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   window.onscroll = () => {
     window.pageYOffset > 0 ?
@@ -19,17 +22,32 @@ const Header = () => {
         <img src="/logo.png" alt="Logo" style={{
           width: '200px',
         }} />
-        <ButtonWithIcon
+        {
+          props.painelAdmin ?
+          <ButtonWithIcon
           icon={<AccountCircleIcon />}
           onClick={() => {
-            setOpen(true)
-            console.log('teste')
+            localStorage.removeItem('token')
+            navigate('/')
           }}
           disabled={false}
           color="primary"
         >
-          Painel Administrativo
+          Sair
         </ButtonWithIcon>
+        :
+        <ButtonWithIcon
+        icon={<AccountCircleIcon />}
+        onClick={() => {
+          setOpen(true)
+          console.log('teste')
+        }}
+        disabled={false}
+        color="primary"
+      >
+        Painel Administrativo
+      </ButtonWithIcon>
+        }
       </StyledNav>
 
       <AdmModal

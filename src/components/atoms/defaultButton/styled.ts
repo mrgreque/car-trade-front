@@ -13,7 +13,7 @@ const StyledButton = styled.button<{ width?: string, height?: string, color?: st
   width: ${props => props.width || 'auto'};
   height: ${props => props.height || 'auto'};
   &:hover {
-    background-color: ${props => props.color === 'primary' ? '#4588af' : '#fff'};
+    background-color: ${props => props.color === 'primary' ? '#4588af' : 'transparent'};
     color: ${props => props.color === 'primary' ? '#fff' : '#4588af'};
     border: 2px solid #4588af;
   }

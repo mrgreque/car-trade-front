@@ -39,7 +39,6 @@ const CarList = () => {
 
   return (
     <main>
-      {totalPages}
       <InternalContainer>
         <FilterActions />
         <GridCars cars={cars} />
