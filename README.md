@@ -22,9 +22,11 @@ yarn
 
 ```
 npm run dev
+```
 
 ou
 
+```
 yarn dev
 ```
 
@@ -46,10 +48,6 @@ yarn dev
 - [Styled Components](https://styled-components.com/)
 - [Material UI](https://mui.com/)
 - [Typescript](https://www.typescriptlang.org/)
-
-### Projeto Front-End
-
-- [Car Trade Front](https://github.com/mrgreque/car-trade-front)
 
 ## Autor
 
