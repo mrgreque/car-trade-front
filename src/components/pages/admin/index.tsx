@@ -6,6 +6,7 @@ import DefaultButton from "../../atoms/defaultButton";
 import { useNavigate } from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
 import { RowEnd, StyledDataGridSection, StyledMain, SyledDataGrid } from "./styled";
+import CustomizedAlert from "../../atoms/alert";
 
 
 
@@ -16,6 +17,14 @@ const AdminPage = () => {
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   const [refId, setRefId] = useState(0);
+  const [emitAlert, setEmitAlert] = useState<boolean>(false)
+  const [alertMessage, setAlertMessage] = useState<string>('')
+  const [alertType, setAlertType] = useState<"success" | "error" | "warning" | "info">('success')
+  const handleEmitAlert = (message: string, type: "success" | "error" | "warning" | "info") => {
+    setAlertMessage(message)
+    setAlertType(type)
+    setEmitAlert(true)
+  };
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -28,6 +37,19 @@ const AdminPage = () => {
   };
   const handleEdit = (id: number) => {
     navigate(`/admin/carro/edicao/${id}`)
+  }
+  const handleDelete = (id: number) => {
+    axios.delete(`http://localhost:3000/car/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token') as string}`
+      }
+    })
+      .then(() => {
+        handleEmitAlert('Carro excluído com sucesso', 'success')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   const columns: GridColDef[] = [
@@ -49,7 +71,7 @@ const AdminPage = () => {
           }}
         >
           <MenuItem onClick={() => handleEdit(refId)}>Editar</MenuItem>
-          <MenuItem onClick={handleClose}>Excluir</MenuItem>
+          <MenuItem onClick={() => handleDelete(refId)}>Excluir</MenuItem>
         </Menu>
       </div>
       },
@@ -87,7 +109,7 @@ const AdminPage = () => {
     .catch((error) => {
       console.log(error);
     })
-  }, [page, itemsPerPage]);
+  }, [page, itemsPerPage, cars]);
 
   return <StyledMain>
     <RowEnd>
@@ -111,8 +133,12 @@ const AdminPage = () => {
       rowSelection={false}
     />
     </StyledDataGridSection>
-
-
+    <CustomizedAlert
+        open={emitAlert}
+        setOpen={setEmitAlert}
+        type={alertType}
+        message={alertMessage}
+      />
   </StyledMain>;
 };
 
