@@ -1,7 +1,9 @@
+import DefaultSelect from "../../atoms/defautSelect";
 import Ordening from "../../atoms/ordening";
 import { FilterActionsWrapper } from "./styled";
+import { FilterActionsProps } from "./types";
 
-const FilterActions = () => {
+const FilterActions = (props: FilterActionsProps) => {
   return (
     <FilterActionsWrapper>
       <article>
@@ -21,10 +23,14 @@ const FilterActions = () => {
         </Button> */}
       </article>
       <article>
-        <Ordening
-          ordening="min-price"
-          handleOrdening={() => {console.log('Ordenar')}}
-          size="small"
+        <DefaultSelect
+          inputValue={props.order}
+          label="Ordenar por"
+          setDefaultInput={props.setOrder}
+          valueOptions={[
+            { value: 'ASC', label: 'Menor Preço' },
+            { value: 'DESC', label: 'Maior Preço' },
+          ]}
         />
       </article>
     </FilterActionsWrapper>
