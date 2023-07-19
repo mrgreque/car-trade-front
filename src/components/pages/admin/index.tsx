@@ -20,7 +20,6 @@ const AdminPage = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>, params: { row: { id: number }}) => {
-    console.log(params.row)
     setRefId(params.row.id)
     setAnchorEl(event.currentTarget);
   };

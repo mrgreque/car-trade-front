@@ -40,7 +40,6 @@ const Header = (props: HeaderProps) => {
         icon={<AccountCircleIcon />}
         onClick={() => {
           setOpen(true)
-          console.log('teste')
         }}
         disabled={false}
         color="primary"

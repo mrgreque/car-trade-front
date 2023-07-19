@@ -6,6 +6,7 @@ import RegisterCar from './components/pages/registerCar'
 import AdminPage from './components/pages/admin'
 import { LoaderSession } from './components/global/loaderSession'
 import BaseAdminPageTemplate from './components/template/baseAdminPage'
+import ErrorPage from './components/pages/error'
 
 // function ScrollToTop() {
 //   const { pathname} = useLocation();
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <BasePageTemplate />,
-    errorElement: <h1>Not Found</h1>,
+    errorElement: <ErrorPage type="notFound" />,
     children: [
       {
         path: '/',
@@ -33,31 +34,37 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <BaseAdminPageTemplate />,
-    errorElement: <h1>Not Found</h1>,
+    errorElement: <ErrorPage type="notFound" />,
     children: [
       {
         path: '/admin/carro/cadastro',
         element: <RegisterCar />,
         loader: LoaderSession,
-        errorElement: <h1>Expired Session</h1>,
+        errorElement: <ErrorPage type="noSession" />,
       },
       {
         path: '/admin/carro/edicao/:id',
         element: <RegisterCar />,
         loader: LoaderSession,
-        errorElement: <h1>Expired Session</h1>,
+        errorElement: <ErrorPage type="noSession" />,
       },
       {
         path: '/admin',
         element: <AdminPage />,
         loader: LoaderSession,
-        errorElement: <h1>Expired Session</h1>,
+        errorElement: <ErrorPage type="noSession"/>,
       }
     ]
   },
   {
     path: '*',
-    element: <h1>Not Found</h1>,
+    element: <BasePageTemplate />,
+    children: [
+      {
+        path: '*',
+        element: <ErrorPage type="notFound" />,
+      }
+    ]
   }
 ])
 
