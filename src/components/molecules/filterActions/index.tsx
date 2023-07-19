@@ -1,5 +1,4 @@
 import DefaultSelect from "../../atoms/defautSelect";
-import Ordening from "../../atoms/ordening";
 import { FilterActionsWrapper } from "./styled";
 import { FilterActionsProps } from "./types";
 
