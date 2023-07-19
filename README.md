@@ -1,47 +1,56 @@
-# Car Rental/Sale App
+# Car Trade Front
 
-This is a React app that allows users to browse and search for cars that are available for rent or sale.
+### Executando o projeto
 
-## Getting Started
+1. Instancie a API: [Car Trade API](https://github.com/mrgreque/car-trade-api)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+2. Clone esse repositório
 
-### Prerequisites
+3. Instale as dependências:
 
-You will need to have Node.js and npm (or yarn) installed on your machine.
+```
+npm install
+```
 
-### Installing
+ou
 
-To install the app, clone the repository and run the following command in the project directory:
+```
+yarn
+```
 
-### Running the app
-
-To run the app, run the following command in the project directory (after installing the app):
+4. Execução via linha de comando:
 
 ```
 npm run dev
-```
 
-or
+ou
 
-```
 yarn dev
 ```
 
-## Features
+5. URL do Site: http://localhost:5173/
 
-- [ ] Browse and search for cars that are available for rent or sale
-- [ ] View detailed information about each car, including photos, specifications, and pricing
-- [ ] Contact the seller/renter to inquire about a car
+## Funcionalidades
 
-## Built With
+- [x] Listar carros disponíveis para venda/alugue, ordenados por preço
+- [x] Acessar painel admin para cadastrar novos carros
+- [x] Edição de carros cadastrados
+- [x] Exclusão de carros cadastrados
+- [x] Cadastro de novos carros
 
-- [React](https://reactjs.org/) - The web framework used
-- [React Router](https://reactrouter.com/) - For client-side routing
-- [Axios](https://github.com/axios/axios) - For making HTTP requests
-- [Styled Components](https://styled-components.com/) - For styling the app
-- [Material UI](https://mui.com/) - For styling the app
+### Desenvolvido com
 
-## Author
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [Axios](https://github.com/axios/axios)
+- [Styled Components](https://styled-components.com/)
+- [Material UI](https://mui.com/)
+- [Typescript](https://www.typescriptlang.org/)
 
-- **Gabriel Greque** - _Developer_ - [Author's GitHub profile](https://github.com/mrgreque)
+### Projeto Front-End
+
+- [Car Trade Front](https://github.com/mrgreque/car-trade-front)
+
+## Autor
+
+- **Gabriel Greque** - _Desenvolvedor Full Stack_ - [Github](https://github.com/mrgreque)
