@@ -1,6 +1,3 @@
-import ButtonWithIcon from "../../atoms/buttonWithIcon";
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { Button } from "@mui/material";
 import Ordening from "../../atoms/ordening";
 import { FilterActionsWrapper } from "./styled";
 
@@ -8,7 +5,7 @@ const FilterActions = () => {
   return (
     <FilterActionsWrapper>
       <article>
-        <ButtonWithIcon
+        {/* <ButtonWithIcon
           disabled={false}
           icon={<FilterListIcon />}
           onClick={() => {console.log('Filtrar')}}
@@ -21,7 +18,7 @@ const FilterActions = () => {
           disabled={false}
         >
           Limpar Filtros
-        </Button>
+        </Button> */}
       </article>
       <article>
         <Ordening

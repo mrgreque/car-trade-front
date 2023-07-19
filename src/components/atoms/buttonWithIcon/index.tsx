@@ -1,17 +1,19 @@
-import { Button } from "@mui/material";
 import { ButtonWithIconProps } from "./types";
+import { StyledButtonWithIcon } from "./styled";
+import { Spacer } from "../../global/styled";
 
 const ButtonWithIcon = (props: ButtonWithIconProps) => {
   return (
     <>
-      <Button
-        variant="contained"
-        startIcon={props.icon}
-        onClick={() => props.onClick}
+      <StyledButtonWithIcon
+        onClick={props.onClick}
         disabled={props.disabled}
+        color={props.color ?? "primary"}
       >
+        {props.icon}
+        <Spacer width="5px" height="0" />
         {props.children}
-      </Button>
+      </StyledButtonWithIcon>
     </>
 
   );

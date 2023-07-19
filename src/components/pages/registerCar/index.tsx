@@ -224,8 +224,7 @@ const RegisterCar = () => {
 
     if (editingCar) {
       // updateCar(car)
-      // axios.patch(`http://localhost:3000/car/${carId}`, car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
-      axios.patch(`http://localhost:3000/car/${carId}`, car, { headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIyIiwiaWF0IjoxNjg5NzM1NjkyLCJleHAiOjE2ODk3MzY4OTJ9.j6SJWjW1QJDPhsPJj9N7lF_xOUQ2KU6b-10kYK1K2rU`}})
+      axios.patch(`http://localhost:3000/car/${carId}`, car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
         .then((response) => {
           console.log(response.data)
           alert('Carro atualizado com sucesso!')
@@ -238,8 +237,7 @@ const RegisterCar = () => {
           alert('Erro ao atualizar carro!')
         })
     } else {
-    // axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
-      axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIyIiwiaWF0IjoxNjg5NzE4NDY1LCJleHAiOjE2ODk3MTk2NjV9.Qw0qPMuFOLjPtaeY2ftyHJ0TVswbwtpN3WitMUX1c6o`}})
+      axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
         .then((response) => {
           console.log(response.data)
           alert('Carro cadastrado com sucesso!')

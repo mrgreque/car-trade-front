@@ -1,6 +1,7 @@
 export type ButtonWithIconProps = {
-  onClick: React.MouseEventHandler<HTMLAnchorElement>,
+  onClick: () => void,
   children: React.ReactNode,
   disabled: boolean,
-  icon: React.ReactNode
+  icon: React.ReactNode,
+  color?: string,
 }
