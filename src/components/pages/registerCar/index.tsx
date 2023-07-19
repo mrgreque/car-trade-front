@@ -9,10 +9,10 @@ import { Column, Row, SpacedRow, Spacer } from "../../global/styled"
 import CarCard from '../../molecules/card';
 import CardTitle from "../../atoms/cardTitle"
 import DefaultSelect from "../../atoms/defautSelect"
-import { StyledArticlePreview, StyledCardPreview } from "./styled"
+import { StyledArticlePreview, StyledCardPreview, StyledTtlePreview } from "./styled"
 import axios from "axios"
 import { CarProps } from "../carList/types"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const brazilStates = [
   { value: 'AC', label: 'Acre' },
@@ -124,6 +124,8 @@ const RegisterCar = () => {
   const [principalImage, setPrincipalImage] = useState('/not_image_2.jpg')
   const [oldPrice, setOldPrice] = useState(0)
   const [editingCar, setEditingCar] = useState<boolean>(false)
+  const [carId, setCarId] = useState<number>(0)
+  const navigate = useNavigate()
 
   const requiredFields: string[] = [
     'name',
@@ -219,17 +221,35 @@ const RegisterCar = () => {
       alert('Preencha todos os campos obrigatórios corretamente!')
       return
     }
+
+    if (editingCar) {
+      // updateCar(car)
+      // axios.patch(`http://localhost:3000/car/${carId}`, car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
+      axios.patch(`http://localhost:3000/car/${carId}`, car, { headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIyIiwiaWF0IjoxNjg5NzM1NjkyLCJleHAiOjE2ODk3MzY4OTJ9.j6SJWjW1QJDPhsPJj9N7lF_xOUQ2KU6b-10kYK1K2rU`}})
+        .then((response) => {
+          console.log(response.data)
+          alert('Carro atualizado com sucesso!')
+          setTimeout(() => {
+            navigate('/admin')
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+          alert('Erro ao atualizar carro!')
+        })
+    } else {
     // axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
-    axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIyIiwiaWF0IjoxNjg5NzE4NDY1LCJleHAiOjE2ODk3MTk2NjV9.Qw0qPMuFOLjPtaeY2ftyHJ0TVswbwtpN3WitMUX1c6o`}})
-      .then((response) => {
-        console.log(response.data)
-        alert('Carro cadastrado com sucesso!')
-        resetForm()
-      })
-      .catch((error) => {
-        console.log(error)
-        alert('Erro ao cadastrar carro!')
-      })
+      axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIyIiwiaWF0IjoxNjg5NzE4NDY1LCJleHAiOjE2ODk3MTk2NjV9.Qw0qPMuFOLjPtaeY2ftyHJ0TVswbwtpN3WitMUX1c6o`}})
+        .then((response) => {
+          console.log(response.data)
+          alert('Carro cadastrado com sucesso!')
+          resetForm()
+        })
+        .catch((error) => {
+          console.log(error)
+          alert('Erro ao cadastrar carro!')
+        })
+    }
   }
 
   const loadCar = (car: CarProps) => {
@@ -252,6 +272,7 @@ const RegisterCar = () => {
     setState(car.state)
     setPrincipalImage(car.principalImage)
     setOldPrice(car.oldPrice ?? 0)
+    setCarId(car.id)
   }
 
   const { id } = useParams()
@@ -279,7 +300,9 @@ const RegisterCar = () => {
           <Row
             width="100%"
           >
-            <CardTitle text="Cadastro de Carro" />
+            <StyledTtlePreview>
+              {editingCar ? `Editando Carro ID: ${id ?? ''}` : 'Cadastro de Carro'}
+            </StyledTtlePreview>
           </Row>
           <Row
             width="100%"
@@ -308,7 +331,7 @@ const RegisterCar = () => {
                     principalImage,
                     oldPrice,
                     city,
-                    id: '',
+                    id: 0,
                   }}
                 />
               </StyledArticlePreview>

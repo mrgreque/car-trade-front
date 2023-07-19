@@ -19,7 +19,7 @@ const CarList = () => {
   useEffect(() => {
     axios.post('http://localhost:3000/cars/paginated', {
       page,
-      itemsPerPage: 30
+      itemsPerPage: 20
     })
       .then((response: {
         data: {
@@ -29,7 +29,7 @@ const CarList = () => {
       }) => {
         console.log(response.data)
         setCars(response.data.cars)
-        setTotalPages(calculateTotalPages(response.data.total, 30));
+        setTotalPages(calculateTotalPages(response.data.total, 20));
       })
       .catch((error) => {
         console.log(error)

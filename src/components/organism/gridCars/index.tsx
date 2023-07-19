@@ -5,7 +5,7 @@ import { GridCarsProps } from './types';
 
 const GridCars = (props: GridCarsProps) => {
   return (
-    <StyledGrid container spacing={{ xs: 2, md: 1, sm: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+    <StyledGrid container spacing={{ xs: 2, md: 1, sm: 1 }} columns={{ xs: 4, sm: 8, md: 10 }}>
       {props.cars.map((car, index) => (
         <Grid item xs={8} sm={4} md={2} key={index}>
           <StyledItem>

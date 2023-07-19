@@ -13,3 +13,10 @@ export const StyledArticlePreview = styled.article`
   max-width: 300px;
   width: 100%;
 `
+
+export const StyledTtlePreview = styled.p`
+  font-size: 1.5em;
+  text-align: center;
+  margin: 10px 0;
+  padding: 0;
+`
