@@ -27,7 +27,6 @@ const CarList = () => {
           total: number
         }
       }) => {
-        console.log(response.data)
         setCars(response.data.cars)
         setTotalPages(calculateTotalPages(response.data.total, 20));
       })

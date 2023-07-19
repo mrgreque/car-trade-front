@@ -14,6 +14,7 @@ import axios from "axios"
 import { CarProps } from "../carList/types"
 import { useNavigate, useParams } from "react-router-dom"
 import DefaultButton from "../../atoms/defaultButton"
+import CustomizedAlert from "../../atoms/alert"
 
 const brazilStates = [
   { value: 'AC', label: 'Acre' },
@@ -128,6 +129,10 @@ const RegisterCar = () => {
   const [carId, setCarId] = useState<number>(0)
   const navigate = useNavigate()
 
+  const [emitAlert, setEmitAlert] = useState<boolean>(false)
+  const [alertMessage, setAlertMessage] = useState<string>('')
+  const [alertType, setAlertType] = useState<"success" | "error" | "warning" | "info">('success')
+
   const requiredFields: string[] = [
     'name',
     'brand',
@@ -149,6 +154,12 @@ const RegisterCar = () => {
     'description',
   ]
 
+  const handleEmitAlert = (message: string, type: "success" | "error" | "warning" | "info") => {
+    setAlertMessage(message)
+    setAlertType(type)
+    setEmitAlert(true)
+  };
+
   const handleSaveImage = async (e: any) => {
     e.preventDefault();
     const file = e.target.files[0] as File;
@@ -156,7 +167,7 @@ const RegisterCar = () => {
       const base64String = await fileToBase64(file);
       setPrincipalImage(base64String)
     } else {
-      alert('File size must be less than or equal to 10MB');
+      handleEmitAlert('O tamanho da imagem deve ser menor ou igual a 10MB', 'error')
     }
   }
 
@@ -216,37 +227,34 @@ const RegisterCar = () => {
       principalImage,
       oldPrice,
     }
-    console.log(car)
     const requiredFieldsValidated = await validateRequiredFields(car as CarProps)
     if (!requiredFieldsValidated) {
-      alert('Preencha todos os campos obrigatórios corretamente!')
+      handleEmitAlert('Preencha todos os campos obrigatórios corretamente!', 'warning')
       return
     }
 
     if (editingCar) {
       // updateCar(car)
       axios.patch(`http://localhost:3000/car/${carId}`, car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
-        .then((response) => {
-          console.log(response.data)
-          alert('Carro atualizado com sucesso!')
+        .then(() => {
+          handleEmitAlert('Carro atualizado com sucesso!', 'success')
           setTimeout(() => {
             navigate('/admin')
-          })
+          }, 1000)
         })
         .catch((error) => {
           console.log(error)
-          alert('Erro ao atualizar carro!')
+          handleEmitAlert('Erro ao atualizar carro!', 'error')
         })
     } else {
       axios.post('http://localhost:3000/car', car, { headers: {Authorization: `Bearer ${localStorage.getItem('token') as string}`}})
-        .then((response) => {
-          console.log(response.data)
-          alert('Carro cadastrado com sucesso!')
+        .then(() => {
+          handleEmitAlert('Carro cadastrado com sucesso!', 'success')
           resetForm()
         })
         .catch((error) => {
           console.log(error)
-          alert('Erro ao cadastrar carro!')
+          handleEmitAlert('Erro ao cadastrar carro!', 'error')
         })
     }
   }
@@ -405,8 +413,13 @@ const RegisterCar = () => {
             </DefaultButton>
           </FormInColumn>
         </Column>
-
       </InternalContainer>
+      <CustomizedAlert
+        open={emitAlert}
+        setOpen={setEmitAlert}
+        type={alertType}
+        message={alertMessage}
+      />
     </main>
   )
 }

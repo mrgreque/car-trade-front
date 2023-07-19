@@ -7,16 +7,27 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CustomizedAlert from "../../atoms/alert";
 
 const AdmModal = (props: AdmModalProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const [emitAlert, setEmitAlert] = useState<boolean>(false)
+  const [alertMessage, setAlertMessage] = useState<string>('')
+  const [alertType, setAlertType] = useState<"success" | "error" | "warning" | "info">('success')
+
   const resetInputs = () => {
     setEmail('');
     setPassword('');
   }
+
+  const handleEmitAlert = (message: string, type: "success" | "error" | "warning" | "info") => {
+    setAlertMessage(message)
+    setAlertType(type)
+    setEmitAlert(true)
+  };
 
   const handleAuthenticate = () => {
     if (!email || !password) return alert('Preencha todos os campos')
@@ -25,17 +36,15 @@ const AdmModal = (props: AdmModalProps) => {
       password
     })
       .then((response: AxiosResponse<{accessToken: string}>) => {
-        console.log(response)
-        alert('Logado com sucesso')
+        handleEmitAlert('Logado com sucesso', 'success')
         setTimeout(() => {
           resetInputs()
           navigate('admin')
         }, 1000)
         localStorage.setItem('token', response.data.accessToken)
       })
-      .catch((error) => {
-        console.log(error)
-        alert('Credenciais inválidas')
+      .catch(() => {
+        handleEmitAlert('Credenciais inválidas', 'error')
       })
   }
 
@@ -91,8 +100,14 @@ const AdmModal = (props: AdmModalProps) => {
               </DefaultButton>
             </SpacedRow>
         </StyledModalContent>
-
+        <CustomizedAlert
+          open={emitAlert}
+          setOpen={setEmitAlert}
+          type={alertType}
+          message={alertMessage}
+        />
       </StyledModal>
+
     </StyledAdmModal>
   )
 }

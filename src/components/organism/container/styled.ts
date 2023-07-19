@@ -5,7 +5,7 @@ const StyledSection = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 100px - 320px);
+  min-height: calc(100vh - 100px);
 `
 
 const StyledDivContainer = styled.div`

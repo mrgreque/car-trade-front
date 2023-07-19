@@ -1,7 +1,7 @@
 import { Spacer } from "../../global/styled";
-import { FooterText } from "./styled";
 import { Outlet } from "react-router-dom";
 import Header from "../../organism/header";
+import Footer from "../../organism/footer";
 
 const BasePageTemplate = () => {
 
@@ -10,13 +10,7 @@ const BasePageTemplate = () => {
       <Header />
       <Spacer height="80px" />
       <Outlet />
-      <footer style={{
-        height: '400px',
-        marginTop: '20px',
-        backgroundColor: '#000',
-      }}>
-        <FooterText>Footer</FooterText>
-      </footer>
+      <Footer />
     </div>
   );
 };
